@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useState } from "react";
 import type { GetServerSideProps } from "next";
 
 interface USGSTimeSeries {
@@ -35,7 +34,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 };
 
 export default function DataPage({ initialData, error }: Props) {
-  const [data] = useState(initialData);
+  const data = initialData;
 
   return (
     <>
@@ -63,7 +62,8 @@ export default function DataPage({ initialData, error }: Props) {
         {data && data.length > 0 && (
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {data.map((ts, i) => {
-              const latestValue = ts.values?.[0]?.value?.[ts.values?.[0]?.value?.length - 1];
+              const valueArray = ts.values?.[0]?.value;
+              const latestValue = valueArray?.[valueArray.length - 1];
               return (
                 <div
                   key={i}

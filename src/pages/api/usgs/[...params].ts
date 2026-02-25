@@ -2,6 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 const USGS_BASE_URL = "https://waterservices.usgs.gov/nwis";
 
+// Allowlist of valid USGS NWIS service endpoints
+const ALLOWED_SERVICES = new Set(["iv", "dv", "gwlevels", "site", "stat", "measurements"]);
+
 // Default USGS site IDs for CNO territory (southeastern Oklahoma)
 const CNO_DEFAULT_SITES = [
   "07332500", // Red River at Denison Dam
@@ -21,6 +24,10 @@ export default async function handler(
   const paramArray = Array.isArray(params) ? params : [params];
   const service = paramArray[0] ?? "iv"; // iv = instantaneous values
 
+  // Validate service against allowlist to prevent path traversal
+  if (!ALLOWED_SERVICES.has(service)) {
+    return res.status(400).json({ error: `Invalid service: ${service}` });
+  }
   // Build USGS query parameters
   const usgsParams = new URLSearchParams();
 
@@ -48,7 +55,11 @@ export default async function handler(
   }
 
   usgsParams.set("parameterCd", String(parameterCd ?? "00060,00065")); // discharge + gauge height
-  usgsParams.set("format", String(format ?? "json"));
+  // Only allow JSON format through the proxy
+  usgsParams.set("format", "json");
+  if (format && format !== "json") {
+    return res.status(400).json({ error: "Only JSON format is supported" });
+  }
 
   if (period) usgsParams.set("period", String(period));
   if (startDT) usgsParams.set("startDT", String(startDT));
