@@ -63,7 +63,7 @@ export default function DataPage({ initialData, error }: Props) {
         {data && data.length > 0 && (
           <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {data.map((ts, i) => {
-              const latestValue = ts.values?.[0]?.value?.[ts.values[0].value.length - 1];
+              const latestValue = ts.values?.[0]?.value?.[ts.values?.[0]?.value?.length - 1];
               return (
                 <div
                   key={i}

@@ -26,7 +26,7 @@ export default function AboutPage() {
             <strong>Technology Stack:</strong>
           </p>
           <ul className="list-disc list-inside mb-4 space-y-1">
-            <li>Next.js 14 (React) — frontend &amp; API routes</li>
+            <li>Next.js 15 (React) — frontend &amp; API routes</li>
             <li>Leaflet / React-Leaflet — interactive mapping</li>
             <li>USGS Water Services API — real-time data</li>
             <li>PostgreSQL + PostGIS — spatial data cache (Railway/Supabase)</li>
