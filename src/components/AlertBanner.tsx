@@ -31,6 +31,10 @@ const severityConfig: Record<string, { bg: string; border: string; icon: string;
 export default function AlertBanner({ alerts }: AlertBannerProps) {
   const [dismissed, setDismissed] = useState<Set<string>>(new Set());
 
+  const handleDismiss = (alertId: string) => {
+    setDismissed((prev) => { const next = new Set(prev); next.add(alertId); return next; });
+  };
+
   const visible = alerts.filter((a) => !dismissed.has(a.id));
 
   if (visible.length === 0) return null;
@@ -62,7 +66,7 @@ export default function AlertBanner({ alerts }: AlertBannerProps) {
               </div>
             </div>
             <button
-              onClick={() => setDismissed((prev) => { const next = new Set(prev); next.add(alert.id); return next; })}
+              onClick={() => handleDismiss(alert.id)}
               className="flex-shrink-0 text-gray-400 hover:text-gray-600 transition-colors text-lg leading-none"
               aria-label="Dismiss alert"
             >
