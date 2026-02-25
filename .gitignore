@@ -11,7 +11,7 @@ coverage/
 out/
 
 # Production
-build/
+build/,
 
 # Misc
 .DS_Store
