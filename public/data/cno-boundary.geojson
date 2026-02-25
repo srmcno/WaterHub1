@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "name": "cno_reservation_boundary",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Choctaw Nation Reservation"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-97.3400, 35.5300],
+            [-94.4300, 35.5300],
+            [-94.4300, 33.6100],
+            [-97.3400, 33.6100],
+            [-97.3400, 35.5300]
+          ]
+        ]
+      }
+    }
+  ]
+}
