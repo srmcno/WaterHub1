@@ -11,7 +11,9 @@ type UsgsResponse = {
 };
 
 export default function UsgsSnapshot() {
-  const [summary, setSummary] = useState<string>("Loading latest USGS monitoring data...");
+  const [summary, setSummary] = useState<string>(
+    "Loading latest USGS monitoring data...",
+  );
 
   useEffect(() => {
     fetch("/api/usgs?collection=monitoring-locations&limit=25")

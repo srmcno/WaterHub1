@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { fetchUsgsCollection } from "@/lib/usgs";
 
+/**
+ * USGS Water Data OGC API Proxy
+ *
+ * Proxies requests to the USGS Water Data API (api.waterdata.usgs.gov).
+ * Supported collections: monitoring-locations, time-series, observations
+ *
+ * Query Parameters:
+ * - collection: OGC collection name (default: "monitoring-locations")
+ * - Any other params are forwarded to USGS (e.g. limit, bbox, f)
+ */
 export async function GET(request: NextRequest) {
   const params = new URLSearchParams(request.nextUrl.searchParams);
   const collection = params.get("collection") ?? "monitoring-locations";
