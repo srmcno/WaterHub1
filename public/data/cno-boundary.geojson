@@ -1,0 +1,25 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Choctaw Nation of Oklahoma",
+        "description": "CNO Reservation Territory — SE Oklahoma",
+        "area_sq_miles": 11000
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-97.0, 34.0],
+          [-94.4, 34.0],
+          [-94.4, 33.6],
+          [-95.0, 33.4],
+          [-96.5, 33.6],
+          [-97.0, 33.8],
+          [-97.0, 34.0]
+        ]]
+      }
+    }
+  ]
+}
